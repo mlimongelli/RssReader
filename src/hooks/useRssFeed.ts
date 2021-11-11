@@ -17,10 +17,7 @@ export const useRssFeed = () => {
       .then(responseData => rssParser.parse(responseData))
       .then(rss => {
         rss.items.forEach(e => {
-          setRssFeedItems(value => [
-            {title: e.title, content: extractTags(e.description)},
-            ...value,
-          ]);
+          setRssFeedItems(value => [extractTags(e), ...value]);
         });
       });
   };

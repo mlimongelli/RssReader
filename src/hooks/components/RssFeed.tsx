@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, FlatList, Text, View} from 'react-native';
+import {Button, FlatList, Image, Text, View} from 'react-native';
 
 import {RssFeedItem, RssFeedItems} from '../constants/types/components';
 import {useRssFeed} from '../useRssFeed';
@@ -16,7 +16,14 @@ const RssFeedItemLine = ({item}: RssFeedItemProps): React.ReactElement => {
   return (
     <View>
       <Text>{item.title}</Text>
-      <Text>{item.content}</Text>
+      {item.images && (
+        <Image
+          style={{width: 75, height: 75}}
+          source={{
+            uri: item.images[0],
+          }}
+        />
+      )}
     </View>
   );
 };
