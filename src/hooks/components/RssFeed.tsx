@@ -12,12 +12,14 @@ interface RssFeedItemProps {
   item: RssFeedItem;
 }
 
-const RssFeedItemLine = ({item}: RssFeedItemProps): React.ReactElement => (
-  <View>
-    <Text>{item.title}</Text>
-    <Text>{item.content}</Text>
-  </View>
-);
+const RssFeedItemLine = ({item}: RssFeedItemProps): React.ReactElement => {
+  return (
+    <View>
+      <Text>{item.title}</Text>
+      <Text>{item.content}</Text>
+    </View>
+  );
+};
 
 export const RssFeed: React.VFC<RssFeedProps> = () => {
   const {refresh, rssFeedItems} = useRssFeed();
