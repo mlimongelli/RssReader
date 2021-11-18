@@ -10,8 +10,6 @@ export const useRssFeed = () => {
   const refresh = async () => {
     setRssFeedItems([]);
 
-    console.log('refreshing...');
-
     const response = await fetch(
       // 'https://www.jw.org/it/news/jw-news/rss/NewsSubsectionRSSFeed/feed.xml',
       'http://www.nasa.gov/rss/dyn/breaking_news.rss',
@@ -21,8 +19,6 @@ export const useRssFeed = () => {
     const items = rss.items.map(i => extractTags(i));
     console.log(items);
     setRssFeedItems(items);
-
-    console.log('done.');
   };
 
   return {refresh, rssFeedItems};

@@ -3,12 +3,8 @@ import {Button, FlatList, Image, Text, View} from 'react-native';
 
 import styled, {css} from '@emotion/native';
 
-import {RssFeedItem, RssFeedItems} from '../constants/types/components';
+import {RssFeedItem} from '../constants/types/components';
 import {useRssFeed} from '../useRssFeed';
-
-export interface RssFeedProps {
-  items: RssFeedItems;
-}
 
 interface RssFeedItemProps {
   item: RssFeedItem;
@@ -53,7 +49,7 @@ const RssFeedItemLine = ({item}: RssFeedItemProps): React.ReactElement => {
   );
 };
 
-export const RssFeed: React.VFC<RssFeedProps> = () => {
+export const RssFeed: React.VFC = () => {
   const {refresh, rssFeedItems} = useRssFeed();
 
   return (
