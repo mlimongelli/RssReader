@@ -7,19 +7,22 @@ import {RssFeedItem} from './constants/types/components';
 export const useRssFeed = () => {
   const [rssFeedItems, setRssFeedItems] = useState<RssFeedItem[]>([]);
 
-  const refresh = () => {
+  const refresh = async () => {
     setRssFeedItems([]);
 
-    return fetch(
-      'https://www.jw.org/it/news/jw-news/rss/NewsSubsectionRSSFeed/feed.xml',
-    )
-      .then(response => response.text())
-      .then(responseData => rssParser.parse(responseData))
-      .then(rss => {
-        rss.items.forEach(e => {
-          setRssFeedItems(value => [extractTags(e), ...value]);
-        });
-      });
+    console.log('refreshing...');
+
+    const response = await fetch(
+      // 'https://www.jw.org/it/news/jw-news/rss/NewsSubsectionRSSFeed/feed.xml',
+      'http://www.nasa.gov/rss/dyn/breaking_news.rss',
+    );
+    const responseData = await response.text();
+    const rss = await rssParser.parse(responseData);
+    const items = rss.items.map(i => extractTags(i));
+    console.log(items);
+    setRssFeedItems(items);
+
+    console.log('done.');
   };
 
   return {refresh, rssFeedItems};
